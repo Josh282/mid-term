@@ -2,7 +2,7 @@ const express = require("express");
 const router = express.Router();
 
 // Video controller
-// Video controller fetch youtube API 
+// Video controller fetching youtube API 
 const videosController = require("../controllers/videosController");
 
 

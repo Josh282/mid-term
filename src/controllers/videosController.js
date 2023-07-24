@@ -5,10 +5,10 @@ exports.getAllVideos = async (req, res) => {
     try {
         const videos = await Video.find();
         res.json(videos);
-    } catch (err) {
+    } catch (error) {
         res.status(500).json({
             message: 'Error fetching videos',
-            error: err.message
+            error: error.message
         })
     }
 };
@@ -20,7 +20,7 @@ exports.getVideoById = async (req, res) => {
     } catch (error) {
         res.status(404).json({ 
             message: "Video not found",
-            error: err.message
+            error: error.message
         });
     }
 };

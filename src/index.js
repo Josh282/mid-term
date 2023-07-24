@@ -22,14 +22,13 @@ mongoose.connection.on('connected', async () => {
             for (const category of categories) {
                 await scrapeVideoFromCategories(category);
             }
-            
+
             console.log('Initial data population complete.');
         } else {
             console.log('Database aleady contains data. Skipping initial data population.');
         }
 
         // Close the mongoDB connection
-        mongoose.connection.close();
     } catch (error) {
         console.error('Error populating initial data:', error.message);
         mongoose.connection.close();
