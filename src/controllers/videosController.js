@@ -1,10 +1,9 @@
-/* const Video = require("../models/VideoModel");
- */
+const Video = require("../models/videoModel");
 
 // Controller function
 exports.getAllVideos = async (req, res) => {
     try {
-        const videos = await Video.find();
+        const videos = await Video.findAll();
         res.json(videos);
     } catch (err) {
         res.status(500).json({
@@ -17,7 +16,7 @@ exports.getAllVideos = async (req, res) => {
 exports.getVideoById = async (req, res) => {
     try {
         const video = await Video.findById(req.params.id);
-        res.json(videos);
+        res.json(video);
     } catch (error) {
         res.status(404).json({ 
             message: "Video not found",

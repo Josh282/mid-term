@@ -6,18 +6,17 @@ const videoSchema = new mongoose.Schema({
         required: true,
         unique: true,
     },
-    videoTitle: {
-        type: String,
-        required: true,
-        unique: false,
-    },
-    videoThumbnail: {
-        type: URL,
-        required: true,
-        unique: true,
-    },
+    thumbnailsURL: String,
+    titleVideos: String,
+    products: [
+        {
+            type: mongoose.Schema.Types.ObjectId,
+            ref: 'Product',
+        },
+    ],
+
 });
 
 const Video = mongoose.model('Video', videoSchema);
 
-module.expots = Video;
+module.exports = Video;
