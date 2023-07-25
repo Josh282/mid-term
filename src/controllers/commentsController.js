@@ -13,17 +13,18 @@ exports.getAllComments = async (req, res) => {
 };
 
 exports.postComment = async (req, res) => {
-    const { commentText } = req.body;
-    const { videoId } = req.params;
+    const commentText = req.body.commentText;
+    const videoId  = req.params.videoId;
     if (!commentText) {
         return res.status(400).json({
             error: 'Comment text are required'
         });
     }
     try {
-        const newComment = await Comment.create({ commentText, video: videoId });
-        // Emit the new comment to all connected clients
-        io.emit('newComment', newComment);
+        const newComment = await Comment.create({ 
+            commentText: commentText, 
+            videoId: videoId 
+        });
         res.status(201).json(newComment);
     } catch(error) {
         res.status(500).json({
