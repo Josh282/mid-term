@@ -4,6 +4,7 @@ const scrapeVideoFromCategories = require('../seeders/saveVideoIds');
 const saveProducts = require('../seeders/saveProducts');
 const populateProductsToVideo = require('../seeders/populateProductToVideo');
 const videosRouter = require('./routes/videos');
+const productRouter = require('./routes/product');
 
 const Video = require('./models/videoModel');
 const Product = require('./models/productModel');
@@ -45,6 +46,7 @@ mongoose.connection.on('error', (error) => {
 });
 
 app.use('/videos', videosRouter);
+app.use('/videos', productRouter);
 
 app.get('/', (req, res) => {
    res.send('Server is Running!');
