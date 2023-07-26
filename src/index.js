@@ -5,6 +5,7 @@ const saveProducts = require('../seeders/saveProducts');
 const populateProductsToVideo = require('../seeders/populateProductToVideo');
 const videosRouter = require('./routes/videos');
 const commentRouter = require('./routes/comment');
+const productRouter = require('./routes/product');
 
 const Video = require('./models/videoModel');
 const Product = require('./models/productModel');
@@ -54,6 +55,7 @@ app.use(express.json());
 app.use('/videos', videosRouter);
 app.use('/comments', commentRouter);
 
+app.use('/videos', productRouter);
 
 app.get('/', (req, res) => {
    res.send('Server is Running!');
