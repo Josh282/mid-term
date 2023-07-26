@@ -1,9 +1,13 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const scrapeVideoFromCategories = require('../seeders/saveVideoIds');
+const saveProducts = require('../seeders/saveProducts');
+const populateProductsToVideo = require('../seeders/populateProductToVideo');
 const videosRouter = require('./routes/videos');
 const commentRouter = require('./routes/comment');
+
 const Video = require('./models/videoModel');
+const Product = require('./models/productModel');
 
 // Load environment variables form .env file
 require('dotenv').config();
@@ -17,19 +21,20 @@ mongoose.connect(process.env.MONGO_URI);
 mongoose.connection.on('connected', async () => {
     console.log('Connected to MongoDB database.');
     try {
-        const count = await Video.countDocuments();
-        if (count === 0) {
+        const countVideos = await Video.countDocuments();
+        const countProducts = await Product.countDocuments();
+        if (countVideos === 0 && countProducts === 0) {
             const categories = ['Valorant', 'Coding', 'Comedy', 'Prank'];
             for (const category of categories) {
                 await scrapeVideoFromCategories(category);
-            }
-
+            };
+            saveProducts();
+            populateProductsToVideo();
             console.log('Initial data population complete.');
         } else {
             console.log('Database aleady contains data. Skipping initial data population.');
         }
 
-        // Close the mongoDB connection
     } catch (error) {
         console.error('Error populating initial data:', error.message);
         mongoose.connection.close();
