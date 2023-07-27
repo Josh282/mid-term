@@ -46,6 +46,7 @@ mongoose.connection.on('error', (error) => {
     console.error('MongoDB connection error:', error);
 });
 
+
 // Middlewares
 // Body Parser
 app.use(express.urlencoded({ extended: true }));
@@ -53,7 +54,7 @@ app.use(express.json());
 
 // Routes
 app.use('/videos', videosRouter);
-app.use('/comments', commentRouter);
+app.use('/videos', commentRouter);
 
 app.use('/videos', productRouter);
 

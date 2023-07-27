@@ -13,6 +13,7 @@ exports.getAllComments = async (req, res) => {
 };
 
 exports.postComment = async (req, res) => {
+    const userName = req.body.userName;
     const commentText = req.body.commentText;
     const videoId  = req.params.videoId;
     if (!commentText) {
@@ -22,6 +23,7 @@ exports.postComment = async (req, res) => {
     }
     try {
         const newComment = await Comment.create({ 
+            userName: userName,
             commentText: commentText, 
             videoId: videoId 
         });

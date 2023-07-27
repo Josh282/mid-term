@@ -4,9 +4,9 @@ const commentsController = require('../controllers/commentsController');
 
 
 // Get all comments for corresponding video
-router.get('/:videoId', commentsController.getAllComments);
+router.get('/:videoId/comments', commentsController.getAllComments);
 
 // Post a new comments to corresponding video
-router.post('/:videoId', commentsController.postComment);
+router.post('/:videoId/comments', commentsController.postComment);
 
 module.exports = router;
