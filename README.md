@@ -74,7 +74,7 @@ MONGODB_URI=your-mongobd-uri
 YOUTUBE_API_KEY=your-youtube-api-key
 PORT=your-preferred-port (e.g., 3000)
 ```
-`YOUTUBE_API_KEY` is needed if you want to populate the initial database using the provided code in this repository, you can refer to [Database Section](#Database-Schema) for more information.
+`YOUTUBE_API_KEY` is needed if you want to populate the initial database using the provided code in this repository, you can refer to [Database Section](#database-schema) for more information.
 
 ## Usage
 To start the application in development process use:
@@ -86,7 +86,7 @@ After that connect to the API using Postman to perform the features on your pref
 
 ## API Structure
 The following content contains:
-##### 1. [API Endpoints](#API-Endpoints)
+##### 1. [API Endpoints](#api-enpoints)
 ##### 2. [API Payloads & Response ](#api-payloads--response)
 ---
 
@@ -113,11 +113,15 @@ Returns all videos in the system.
 - **Video object**
 ```json
 {
-    _id: string
-    youtubeId: string
-    thumbnailsURL: string
-    titleVideos: string
-    products: [{ <product_object> }]
+    "_id": "string",
+    "youtubeId": "string",
+    "thumbnailsURL": "string",
+    "titleVideos": "string",
+    "products": [{"<product_object>"},
+                 {"<product_object>"},
+                 {"<product_object>"},
+                 {"<product_object>"}
+                ]
 }
 ```
 ---
@@ -130,11 +134,11 @@ Returns all videos in the system.
     - **Content**:
 ```json
 {
-    videos: [
-                {<video_object>},
-                {<video_object>},
-                {<video_object>},
-                ...
+    "videos": [
+                {"<video_object>"},
+                {"<video_object>"},
+                {"<video_object>"},
+                "..."
             ]
 }
 ```
@@ -160,12 +164,12 @@ Returns the list of products of specified video.
 - **Product object**
 ```json
 {
-    _id: string
-    title: string
-    price: number
-    description: string
-    category: [string]
-    image: [string]
+    "_id": "string",
+    "title": "string",
+    "price": "number",
+    "description": "string",
+    "category": ["string"],
+    "image": ["string"],
 }
 ```
 ---
@@ -180,11 +184,11 @@ Returns the list of products of specified video.
     - **Content**:
 ```json
 {
-    productList: [
-                {<product_object>},
-                {<product_object>},
-                {<product_object>},
-                {<product_object>}
+    "productList": [
+                {"<product_object>"},
+                {"<product_object>"},
+                {"<product_object>"},
+                {"<product_object>"}
             ]
 }
 ```
@@ -195,11 +199,11 @@ Returns all comment of specified video.
 - **Comment object**
 ```json
 {
-    _id: string
-    userName: string
-    commentText: string
-    videoId: string
-    createdAt: datetime(ISO 8601)
+    "_id": "string",
+    "userName": "string",
+    "commentText": "string",
+    "videoId": "string",
+    "createdAt": "datetime(ISO 8601)"
 }
 ```
 ---
@@ -214,11 +218,11 @@ Returns all comment of specified video.
     - **Content**:
 ```json
 {
-    comments: [
-                {<comment_object>},
-                {<comment_object>},
-                {<comment_object>},
-                ...
+    "comments": [
+                {"<comment_object>"},
+                {"<comment_object>"},
+                {"<comment_object>"},
+                "..."
             ]
 }
 ```
@@ -232,8 +236,9 @@ Creates a new comment in a specified video.
     - ***Required***: 
 ```json
 {
-    userName: string,
-    commentText: string
+    
+    "userName": "string",
+    "commentText": "string"
 }
 ```
 - **Headers**:
