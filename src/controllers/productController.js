@@ -2,7 +2,7 @@ const Video = require('../models/videoModel');
 
 exports.getProductList = async (req, res) => {
     try {
-        const videoId = req.params.videoId;
+        const videoId = req.params.id;
         const video = await Video.findById(videoId).populate('products');
 
         if (!video) {
