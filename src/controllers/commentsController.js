@@ -4,7 +4,7 @@ exports.getAllComments = async (req, res) => {
     const { videoId } = req.params;
     try {
         const comments = await Comment.find({ videoId: videoId}).sort({ createdAt: -1 });
-        res.json(comments);
+        res.status(200).json({ comments });
     } catch (error) {
         res.status(500).json({
             error: 'Failed to retrieved comments'

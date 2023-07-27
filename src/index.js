@@ -55,12 +55,7 @@ app.use(express.json());
 // Routes
 app.use('/videos', videosRouter);
 app.use('/videos', commentRouter);
-
 app.use('/videos', productRouter);
-
-app.get('/', (req, res) => {
-   res.send('Server is Running!');
-});
 
 app.listen(port, ()=> {
     console.log(`Server is running in http://localhost:${port}`);

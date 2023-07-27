@@ -4,7 +4,7 @@ const Video = require("../models/videoModel");
 exports.getAllVideos = async (req, res) => {
     try {
         const videos = await Video.find();
-        res.json(videos);
+        res.status(200).json({ videos });
     } catch (error) {
         res.status(500).json({
             message: 'Error fetching videos',
@@ -16,7 +16,7 @@ exports.getAllVideos = async (req, res) => {
 exports.getVideoById = async (req, res) => {
     try {
         const video = await Video.findById(req.params.id);
-        res.json(video);
+        res.status(200).json({ video });
     } catch (error) {
         res.status(404).json({ 
             message: "Video not found",

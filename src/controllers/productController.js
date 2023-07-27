@@ -11,7 +11,7 @@ exports.getProductList = async (req, res) => {
 
         const productList = video.products;
 
-        res.json({ productList });
+        res.status(200).json({ productList });
     } catch (error) {
         console.error('Error fetching product list:', error);
         res.status(500).json({ message: 'Internal server error' });
