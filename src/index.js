@@ -1,5 +1,6 @@
 const express = require('express');
 const mongoose = require('mongoose');
+const cors = require('cors');
 const scrapeVideoFromCategories = require('../seeders/saveVideoIds');
 const saveProducts = require('../seeders/saveProducts');
 const populateProductsToVideo = require('../seeders/populateProductToVideo');
@@ -14,7 +15,7 @@ const Product = require('./models/productModel');
 require('dotenv').config();
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 5000;
 
 // Connect to MongoDB database
 mongoose.connect(process.env.MONGO_URI);
@@ -51,6 +52,7 @@ mongoose.connection.on('error', (error) => {
 // Body Parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
+app.use((cors()));
 
 // Routes
 app.use('/videos', videosRouter);
