@@ -2,24 +2,36 @@ import React from 'react';
 import { useParams } from 'react-router-dom';
 import Header from './Header';
 import ProductsContainer from './ProductsContainer';
-/* import EmbedVideo from './EmbedVideo';
-import CommentSection from './CommentSection'; */
+import LiveComment from './LiveComment';
 import useVideos from '../hooks/useVideos';
+import useYouTubePlayer from '../hooks/useYouTubePlayer';
+import '../styles/videoDetailPage.css';
 
 const VideoDetailPage = () => {
     const { videoId } = useParams();
-    const videos = useVideos();
+    const { videos } = useVideos(videoId);
+    const playerRef = useYouTubePlayer(videos[0]?.youtubeId);
 
-    const selectedVideo  = videos.find(video => video._id === videoId);
-    if (!selectedVideo) {
+    if (!videos) {
         return <div>Loading...</div>
     }
 
+ 
     return (
-        <div>
+        <div className='main'>
             <Header />
-            {/* {console.log(selectedVideo._id)} */}
-            <ProductsContainer videoId={selectedVideo._id} />
+            <div className='body-container'>
+                <div className='left-container'>
+                    <ProductsContainer videoId={videoId} />
+                </div>
+                <div className='center-container'>
+                     <div ref={playerRef} className='youtube-player'/>
+                     <h1>{videos[0]?.titleVideos}</h1>
+                </div>
+                <div className='right-container'>
+                    <LiveComment />
+                </div>
+            </div>
         </div>
     );
 };

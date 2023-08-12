@@ -1,0 +1,39 @@
+.live-comment {
+    background-color: #f9f9f9;
+    padding: 16px;
+    border-radius: 8px;
+    box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+  }
+  
+  .comment-list {
+    margin-bottom: 16px;
+  }
+  
+  .comment-item {
+    display: flex;
+    margin-bottom: 16px;
+  }
+  
+  .comment-avatar {
+    margin-right: 12px;
+  }
+  
+  .comment-content {
+    flex: 1;
+  }
+  
+  .comment-name {
+    font-weight: bold;
+    margin-bottom: 4px;
+  }
+  
+  .comment-inputs {
+    display: flex;
+    margin-top: 16px;
+  }
+  
+  .comment-input {
+    flex: 1;
+    margin-right: 8px;
+  }
+  
