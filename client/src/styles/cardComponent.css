@@ -35,6 +35,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+
+    &.search-result {
+        font-size: 12px;
+    }
 }
 
 .custom-card:hover .custom-card-title {

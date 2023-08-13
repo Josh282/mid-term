@@ -2,12 +2,16 @@ import { useEffect, useRef } from 'react';
 
 const useYouTubePlayer = (youtubeId) => {
     const playerRef = useRef(null);
-    
-    useEffect(() => {
+
+    const loadYouTubeScript = () => {
         const tag = document.createElement('script');
         tag.src = 'https://www.youtube.com/iframe_api';
         const firstScriptTag = document.getElementsByTagName('script')[0];
         firstScriptTag.parentNode.insertBefore(tag, firstScriptTag);
+    };
+    
+    useEffect(() => {
+        loadYouTubeScript();
 
         window.onYouTubeIframeAPIReady = () => {
             playerRef.current = new window.YT.Player(playerRef.current, {

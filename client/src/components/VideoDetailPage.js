@@ -1,5 +1,5 @@
 import React from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useHistory } from 'react-router-dom';
 import Header from './Header';
 import ProductsContainer from './ProductsContainer';
 import LiveComment from './LiveComment';
@@ -9,13 +9,13 @@ import '../styles/videoDetailPage.css';
 
 const VideoDetailPage = () => {
     const { videoId } = useParams();
-    const { videos } = useVideos(videoId);
+    const history = useHistory();
+    const { videos, error } = useVideos(videoId);
     const playerRef = useYouTubePlayer(videos[0]?.youtubeId);
 
-    if (!videos) {
-        return <div>Loading...</div>
+    if (error) {
+        history.push('/error');
     }
-
  
     return (
         <div className='main'>

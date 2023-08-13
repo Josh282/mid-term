@@ -1,0 +1,15 @@
+.search-result-page {
+    padding: 20px;
+  }
+  
+  .results-container {
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+  
+  h2 {
+    font-size: 24px;
+    margin-bottom: 20px;
+  }
+  
+  

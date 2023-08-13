@@ -1,9 +1,9 @@
 const Comment = require('../models/commentModel');
 
 exports.getAllComments = async (req, res) => {
-    const { id } = req.params.id;
+    const videoId = req.params.id;
     try {
-        const comments = await Comment.find({ id }).sort({ createdAt: -1 });
+        const comments = await Comment.find({ videoId }).sort({ createdAt: -1 });
         res.status(200).json({ comments });
     } catch (error) {
         res.status(500).json({

@@ -3,6 +3,7 @@ import axios from 'axios';
 
 const useVideos = (videoId) => {
     const [videos, setVideos] = useState([]);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
         const fetchVideos = async () => {
@@ -14,14 +15,14 @@ const useVideos = (videoId) => {
                 const response = await axios.get(url); 
                 setVideos(videoId ? [response.data.video] : response.data.videos);
             } catch (error) {
-                console.error('Error fetching videos:', error);
+                setError(true);
             }
         };
 
         fetchVideos();
     }, [videoId]);
     
-    return { videos };
+    return { videos, error };
 };
 
 export default useVideos;
