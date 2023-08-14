@@ -21,6 +21,7 @@ const port = process.env.PORT || 5000;
 
 // Connect to MongoDB database
 mongoose.connect(process.env.MONGO_URI);
+let initialPopulationComplete = false;
 
 mongoose.connection.on('connected', async () => {
     console.log('Connected to MongoDB database.');
@@ -28,13 +29,13 @@ mongoose.connection.on('connected', async () => {
         const countVideos = await Video.countDocuments();
         const countProducts = await Product.countDocuments();
         if (countVideos === 0 && countProducts === 0) {
-            const categories = ['Valorant', 'Coding', 'Comedy', 'Prank'];
+            const categories = ['Valorant', 'Coding', 'Dota2', 'Physics', 'Gadget Review', 'Minecraft', 'SUCR', 'Natgeo'];
             for (const category of categories) {
                 await scrapeVideoFromCategories(category);
             };
             saveProducts();
-            populateProductsToVideo();
             console.log('Initial data population complete.');
+            initialPopulationComplete = true;
         } else {
             console.log('Database aleady contains data. Skipping initial data population.');
         }
@@ -43,12 +44,15 @@ mongoose.connection.on('connected', async () => {
         console.error('Error populating initial data:', error.message);
         mongoose.connection.close();
     }
+
+    if (initialPopulationComplete) {
+        await populateProductsToVideo();
+    }
 });
 
 mongoose.connection.on('error', (error) => {
     console.error('MongoDB connection error:', error);
 });
-
 
 // Middlewares
 // Body Parser
