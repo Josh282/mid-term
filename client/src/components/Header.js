@@ -1,7 +1,8 @@
 import React from 'react';
 import { Input, Avatar } from 'antd';
 import { useSearchContext } from './SearchContext';
-import { useHistory } from 'react-router-dom';
+import { useHistory, Link } from 'react-router-dom';
+import { HomeOutlined } from '@ant-design/icons';
 
 const Header = () => {
     const history = useHistory();
@@ -17,13 +18,21 @@ const Header = () => {
 
     return(
         <header className='header'>
-            <Avatar size='large' scr='url_to_profile_picture' />
+            <div className='header-logo'>
+                <Link to ='/'>
+                    <HomeOutlined style = {{ fontSize: '45px', color: 'black', marginLeft: '20px' }} />
+                </Link>
+            </div>
             <Input.Search 
                 placeholder='Search' 
                 value={searchValue}
                 onChange= {(e) => setSearchValue(e.target.value)}
                 onSearch={ (searchValue) => handleSearch(searchValue) }
+                style={{ width: '50%', maxWidth: '500px', margin: '0 auto' }}
             />
+            <div className='header-avatar'>
+                <Avatar size='large' scr='url_to_profile_picture' />
+            </div>
         </header>
     );
 };

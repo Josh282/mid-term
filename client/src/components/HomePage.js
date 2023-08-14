@@ -1,5 +1,5 @@
-import React from 'react';
-import { Row, Col } from 'antd';
+import React, { useState } from 'react';
+import { Row, Col, Pagination } from 'antd';
 import { Link } from 'react-router-dom';
 import CardComponent from './VideoCard';
 import Header from './Header';
@@ -7,9 +7,16 @@ import useVideos from '../hooks/useVideos';
 
 const HomePage = () => {
     const { videos } = useVideos(); 
+    const videosPerPage = 20;
+    const [currentPage, setCurrentPage] = useState(1);
     // Ensuring each row has 5 videos in it
     const rows = Math.ceil(videos.length / 5);
     const rowsArray = Array.from({ length: rows }, (_, index) => index * 5);
+
+    const totalPages = Math.ceil(videos.length / videosPerPage);
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
     return(
         <div>
@@ -25,6 +32,14 @@ const HomePage = () => {
                     ))}
                 </Row>
             ))}
+                <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                    <Pagination
+                        current={currentPage}
+                        total={videos.length}
+                        pageSize={videosPerPage}
+                        onChange={handlePageChange}
+                    />
+                </div>
         </div>
     );
 };

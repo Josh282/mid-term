@@ -32,16 +32,26 @@
     visibility: visible;
     opacity: 1;
     transition: visibility 0s, opacity 0.2s;
-    display: flex;
     justify-content: flex-start;
     align-items: center;
-
-    &.search-result {
-        font-size: 12px;
-    }
 }
 
 .custom-card:hover .custom-card-title {
     visibility: hidden;
     opacity: 0;
+}
+
+.search-result.custom-card-title {
+    margin-left: 350px;
+    width: 480px;
+    padding: 0 8px; 
+    color: white; 
+    font-size: 25px; 
+    line-height: 1.5; 
+    word-wrap: break-word;
+}
+
+.search-result.custom-card:hover .custom-card-title {
+    visibility: visible;
+    opacity: 1;
 }

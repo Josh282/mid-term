@@ -1,5 +1,5 @@
-import React from 'react';
-import { List } from 'antd';
+import React, { useState } from 'react';
+import { List, Pagination } from 'antd';
 import { useSearchContext } from './SearchContext';
 import Header from './Header';
 import useVideos from '../hooks/useVideos';
@@ -9,6 +9,8 @@ import '../styles/searchResultPage.css';
 const SearchResultPage = () => {
     const { searchValue } = useSearchContext();
     const { videos } = useVideos();
+    const pageSize = 5;
+    const [currentPage, setCurrentPage] = useState(1);
 
     // Prep for words input from user
     const cleanSearchValue = searchValue.trim().toLowerCase();
@@ -30,7 +32,11 @@ const SearchResultPage = () => {
         : [];
 
     const noVideosFound = searchValue && filteredVideos.length === 0;
-    console.log('search:', noVideosFound);
+
+    // Handle Pagination
+    const handlePageChange = (page) => {
+        setCurrentPage(page);
+    };
 
     return (
         <div className='search-result-page'>
@@ -40,16 +46,29 @@ const SearchResultPage = () => {
                 {noVideosFound ? (
                     <p>No videos found for "{searchValue}"</p>
                 ) : (
-                    <List  
-                        itemLayout='vertical'
-                        size='large'
-                        dataSource={filteredVideos}
-                        renderItem={video => (
-                            <List.Item>
-                                <VideoCard video={video} isSearchRresult />
-                            </List.Item>
-                        )}
-                    />
+                    <div>
+                        <List  
+                            itemLayout='vertical'
+                            size='medium'
+                            dataSource={filteredVideos.slice(
+                                (currentPage - 1) * pageSize,
+                                currentPage * pageSize
+                            )}
+                            renderItem={video => (
+                                <List.Item>
+                                    <VideoCard video={video} isSearchResult />
+                                </List.Item>
+                            )}
+                        />
+                        <div style={{ textAlign: 'center', marginTop: '20px' }}>
+                            <Pagination 
+                                current={currentPage}
+                                total={filteredVideos.length}
+                                pageSize={pageSize}
+                                onChange={handlePageChange}
+                            />
+                        </div>
+                    </div>
                 )}
             </div>
         </div>
