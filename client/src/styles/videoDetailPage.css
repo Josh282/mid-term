@@ -1,7 +1,7 @@
 .body-container {
     display: flex;
     justify-content: space-between;
-    align-items: stretch; /* Stretch to take full height */
+    align-items: stretch; 
     max-height: 100vh;
 }
 
@@ -47,8 +47,8 @@
     justify-content: space-between;
     justify-items: center;
     transition: box-shadow 0.3s;
-    height: 100%; /* Distribute the height evenly */
-    background-color: white; /* Just for visualization */
+    height: 100%;
+    background-color: white; 
 }
 
 .product-image img {

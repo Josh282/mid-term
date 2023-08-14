@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
+const http = require('http');
+const socketIO = require('socket.io');
 const scrapeVideoFromCategories = require('../seeders/saveVideoIds');
 const saveProducts = require('../seeders/saveProducts');
 const populateProductsToVideo = require('../seeders/populateProductToVideo');
@@ -52,13 +54,40 @@ mongoose.connection.on('error', (error) => {
 // Body Parser
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
-app.use((cors()));
+
+const corsOptions = {
+    origin: 'http://localhost:3000',
+    methods: ['GET', 'POST'],
+    credentials: true,
+    optionsSuccessStatus: 204,
+}
+app.use(cors(corsOptions));
 
 // Routes
 app.use('/videos', videosRouter);
 app.use('/videos', commentRouter);
 app.use('/videos', productRouter);
 
-app.listen(port, ()=> {
+const server = http.createServer(app);
+const io = socketIO(server, {
+    cors: {
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST'],
+        credentials: true,
+    }
+});
+
+app.set('socketio', io);
+
+io.on('connection', (socket) => {
+    console.log('A user connected');
+
+    socket.on('newComment', (comment) => {
+        console.log('Received new comment:', comment);
+        socket.broadcast.emit('newComment', comment);
+    });
+});
+
+server.listen(port, ()=> {
     console.log(`Server is running in http://localhost:${port}`);
 });

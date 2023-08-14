@@ -16,6 +16,8 @@ exports.postComment = async (req, res) => {
     const userName = req.body.userName;
     const commentText = req.body.commentText;
     const videoId  = req.params.id;
+    const io = req.app.get('socketio');
+    
     if (!commentText) {
         return res.status(400).json({
             error: 'Comment text are required'
@@ -27,6 +29,8 @@ exports.postComment = async (req, res) => {
             commentText: commentText, 
             videoId: videoId 
         });
+
+        io.emit('newComment', newComment);
         res.status(201).json(newComment);
     } catch(error) {
         res.status(500).json({
