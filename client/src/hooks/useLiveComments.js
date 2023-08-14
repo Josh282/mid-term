@@ -20,16 +20,10 @@ const useLiveComments = (videoId) => {
 
     const handleCommentSubmit = async () => {
         try {
-            const response = await axios.post(`http://localhost:5000/videos/${videoId}/comments`, {
+            await axios.post(`http://localhost:5000/videos/${videoId}/comments`, {
                 userName: newComment.name,
                 commentText: newComment.comment,
             });
-
-            const newCommentData = response.data;
-            const socket = socketIOClient('ws://localhost:5000', {
-                withCredentials: true,
-            });
-            socket.emit('newComment', newCommentData);
 
             setNewComment({ name: '', comment: '' });
         } catch (error) {

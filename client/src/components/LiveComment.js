@@ -11,6 +11,7 @@ const LiveComment = () => {
         newComment,
         setNewComment,
         handleCommentSubmit,
+        commentListRef
     } = useLiveComments(videoId);
 
     const handleSubmit = () => {

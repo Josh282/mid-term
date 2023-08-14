@@ -6,6 +6,10 @@ import useVideos from '../hooks/useVideos';
 import VideoCard from './VideoCard';
 import '../styles/searchResultPage.css';
 
+const removePunctuation = (text) => {
+    return text.replace(/[.,\/#!$%\^&\*;:{}=\-_`~()]/g, '');
+};
+
 const SearchResultPage = () => {
     const { searchValue } = useSearchContext();
     const { videos } = useVideos();
@@ -14,19 +18,14 @@ const SearchResultPage = () => {
 
     // Prep for words input from user
     const cleanSearchValue = searchValue.trim().toLowerCase();
-    const searchWords = cleanSearchValue.split(' ');
+    const searchWords = cleanSearchValue.split(' ').map(removePunctuation);
 
     // Simple search Logic (search by component of words input)
     const filteredVideos = searchValue
         ? videos.filter(video => {
-            return searchWords.some(word => {
-                if (word.length < 1) {
-                    return true;
-                }
-
-                const videoTitle = video.titleVideos.toLowerCase().split(' ');
-    
-                return videoTitle.includes(word);
+            const videoTitleWords = video.titleVideos.toLowerCase().split(' ').map(removePunctuation);;
+            return searchWords.some(word => {  
+                return videoTitleWords.includes(word);
             });
         })
         : [];
@@ -37,6 +36,10 @@ const SearchResultPage = () => {
     const handlePageChange = (page) => {
         setCurrentPage(page);
     };
+
+    const startIndex = (currentPage - 1) * pageSize;
+    const endIndex = startIndex + pageSize;
+    const videosToDisplay = filteredVideos.slice(startIndex, endIndex);
 
     return (
         <div className='search-result-page'>
@@ -50,10 +53,7 @@ const SearchResultPage = () => {
                         <List  
                             itemLayout='vertical'
                             size='medium'
-                            dataSource={filteredVideos.slice(
-                                (currentPage - 1) * pageSize,
-                                currentPage * pageSize
-                            )}
+                            dataSource={videosToDisplay}
                             renderItem={video => (
                                 <List.Item>
                                     <VideoCard video={video} isSearchResult />
