@@ -342,9 +342,12 @@ The Comment Collection (`/src/models/commentModel.js`) stores information about 
  ## Upcoming Feature
  This project is under active development, as the timeline goes I plan to add the following features:
 
- - [ ] **Live Comment Feature**: The system now can't handle real-time commenting system that allows users to post and view comments without refreshing page. The implementation will be create using websocket.
- - [ ] **Search Feature**: I am planning to add seach functionality that enables users to search specific video within the application.
- - [ ] **Frontend Development**: Currently, the project only includes the backend part. I will be adding the frontend part to create the user interface.
+ - [x] **Live Comment Feature**: The system now can't handle real-time commenting system that allows users to post and view comments without refreshing page. The implementation will be create using websocket.
+ - [x] **Search Feature**: I am planning to add seach functionality that enables users to search specific video within the application.
+ - [x] **Frontend Development**: Currently, the project only includes the backend part. I will be adding the frontend part to create the user interface.
+
+ Update:
+ All feature mentioned already applied in the client-side implementation, please look to [client-side](./client/).
 
 
 

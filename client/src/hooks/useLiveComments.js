@@ -8,7 +8,8 @@ const useLiveComments = (videoId) => {
 
     const fetchComments = async () => {
         try {
-            const response = await axios.get(`http://localhost:5000/videos/${videoId}/comments`);
+            const apiURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+            const response = await axios.get(`${apiURL}/videos/${videoId}/comments`);
             const sortedComments = response.data.comments.sort((a, b) => {
                 return new Date(a.createdAt) - new Date(b.createdAt);
             });
@@ -20,7 +21,8 @@ const useLiveComments = (videoId) => {
 
     const handleCommentSubmit = async () => {
         try {
-            await axios.post(`http://localhost:5000/videos/${videoId}/comments`, {
+            const apiURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
+            await axios.post(`${apiURL}/videos/${videoId}/comments`, {
                 userName: newComment.name,
                 commentText: newComment.comment,
             });
@@ -32,7 +34,8 @@ const useLiveComments = (videoId) => {
     };
 
     useEffect(() => {
-        const socket = socketIOClient('ws://localhost:5000', {
+        const socketURL = process.env.REACT_APP_SOCKET_URL || 'ws://localhost:5000';
+        const socket = socketIOClient(socketURL, {
             withCredentials: true,
         });
 

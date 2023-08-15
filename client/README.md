@@ -14,9 +14,6 @@ This is the client-side application for Tokopedia Play Clone Generasi Gigih mid-
   - [Video Playback](#video-playback)
   - [Search Functionality](#search-functionality)
   - [Live Comments](#live-comments)
-- [Deployment](#deployment)
-  - [Client-side Deployment](#client-side-deployment)
-  - [Server-side Deployment](#server-side-deployment)
 
 ## Features
 Some feature implemented in this app are:

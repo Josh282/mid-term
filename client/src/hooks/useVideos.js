@@ -8,9 +8,10 @@ const useVideos = (videoId) => {
     useEffect(() => {
         const fetchVideos = async () => {
             try {
+                const apiURL = process.env.REACT_APP_API_URL || 'http://localhost:5000';
                 const url = videoId 
-                    ? `http://localhost:5000/videos/${videoId}`
-                    : 'http://localhost:5000/videos';
+                    ? `${apiURL}/videos/${videoId}`
+                    : `${apiURL}/videos`;
                 
                 const response = await axios.get(url); 
                 setVideos(videoId ? [response.data.video] : response.data.videos);
