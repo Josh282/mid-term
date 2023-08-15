@@ -78,6 +78,7 @@ Navigate to the URL of the port you used for client in the browser to access the
 - Follow the [Access the application](#2-access-the-application)
 - Pick a video of your choice, the page will redirect you to the video detail page
 - Play the YouTube video
+
 ![video-playback](screenshots/video-playback.gif)
 ---
 
