@@ -1,70 +1,101 @@
-# Getting Started with Create React App
+# Tokopedia Play Clone Client
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Description
 
-## Available Scripts
+This is the client-side application for Tokopedia Play Clone Generasi Gigih mid-term assignment that is the part of the final-project assignment. In this application users can watch and interact with videos, live comments, and see related products in the video. The reference can be viewed in [Tokopedia Play](https://www.tokopedia.com/play/channels)
 
-In the project directory, you can run:
+## Table of Contents
+- [Features](#features)
+- [Technologies Used](#technologies-used)
+- [Getting Started](#getting-started)
+  - [Prerequisites](#prerequisites)
+  - [Installation](#installation)
+- [Usage](#usage)
+  - [Video Playback](#video-playback)
+  - [Search Functionality](#search-functionality)
+  - [Live Comments](#live-comments)
+- [Deployment](#deployment)
+  - [Client-side Deployment](#client-side-deployment)
+  - [Server-side Deployment](#server-side-deployment)
 
-### `npm start`
+## Features
+Some feature implemented in this app are:
+- Browse and watch videos from the server
+- Leave live comments on videos
+- Explore related products associated with each video
+- Search for videos based on keywords
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+## Technologies Used
+- React: Frontend framework for building user interface
+- Ant Design: UI component library
+- Axios: HTTP client for making API request
+- Socket.io: Real-time communication library for live comments
+- Youtube Iframe API
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Getting Started
 
-### `npm test`
+### Prerequisites
+- Node.js and `npm` (Node Package Manager) installed
+- Server side folder in the parent folder
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### Installation
+To install this project you need to follow this steps:
 
-### `npm run build`
+#### 1. Clone the repository: 
+```bash
+git clone https://github.com/Josh282/mid-term.git
+```
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+#### 2. Install dependecies:
+Use node package manager to install the dependecies in `package.json`:
+```bash
+cd /mid-term/client
+npm install
+```
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### Running the Application Locally
+To run this application on your local machine, follow these steps:
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+#### Prerequisites
+Before you begin, ensure you have following the instruction to run the server-side from parent folder that can be found here [README.md](../README.md). After that ensure that your server-side and client-side is using different port. In this application the default port set is `localhost:5000` for server and `localhost:3000` for client.
 
-### `npm run eject`
+#### 1. Start the development server and client:
+```bash
+# Server Development
+cd ../
+npm run dev
+```
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+```bash
+# Client Server
+cd ./client
+npm start
+```
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+#### 2. Access the application
+Navigate to the URL of the port you used for client in the browser to access the application. The default is `http://localhost:3000`
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+## Usage
+#### Video Playback
+- Follow the [Access the application](#2-access-the-application)
+- Pick a video of your choice, the page will redirect you to the video detail page
+- Play the YouTube video
+![video-playback](screenshots/video-playback.gif)
 
-## Learn More
+#### Search Functionality
+- Enter keywords in the search bar to search for videos
+- Click on search results to view related videos
+![search](screenshots/search.gif)
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+#### Live Comments
+- Play a video and leave comments in the comment section.
+- Comments will be displayed in real-time for all viewers.
+![comment](screenshots/comment.gif)
+![live-comment](screenshots/live-comment.gif)
 
-To learn React, check out the [React documentation](https://reactjs.org/).
 
-### Code Splitting
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
 
-### Analyzing the Bundle Size
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
 
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)

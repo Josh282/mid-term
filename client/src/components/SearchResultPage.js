@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { List, Pagination } from 'antd';
 import { useSearchContext } from './SearchContext';
 import Header from './Header';
@@ -56,7 +57,9 @@ const SearchResultPage = () => {
                             dataSource={videosToDisplay}
                             renderItem={video => (
                                 <List.Item>
-                                    <VideoCard video={video} isSearchResult />
+                                    <Link to={`/videos/${video._id}`}>
+                                        <VideoCard video={video} isSearchResult />
+                                    </Link>
                                 </List.Item>
                             )}
                         />
