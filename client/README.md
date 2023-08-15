@@ -79,17 +79,21 @@ Navigate to the URL of the port you used for client in the browser to access the
 - Pick a video of your choice, the page will redirect you to the video detail page
 - Play the YouTube video
 ![video-playback](screenshots/video-playback.gif)
+---
 
 #### Search Functionality
 - Enter keywords in the search bar to search for videos
 - Click on search results to view related videos
-![search](screenshots/search.gif)
 
+![search](screenshots/search.gif)
+---
 #### Live Comments
 - Play a video and leave comments in the comment section.
 - Comments will be displayed in real-time for all viewers.
+
 ![comment](screenshots/comment.gif)
 ![live-comment](screenshots/live-comment.gif)
+---
 
 
 
