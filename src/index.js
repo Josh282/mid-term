@@ -60,7 +60,7 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 
 const corsOptions = {
-    origin: 'http://localhost:3000',
+    origin: process.env.FE_URL || 'http://localhost:3000',
     methods: ['GET', 'POST'],
     credentials: true,
     optionsSuccessStatus: 204,
@@ -75,7 +75,7 @@ app.use('/videos', productRouter);
 const server = http.createServer(app);
 const io = socketIO(server, {
     cors: {
-        origin: 'http://localhost:3000',
+        origin: process.env.FE_URL || 'http://localhost:3000',
         methods: ['GET', 'POST'],
         credentials: true,
     }
@@ -93,5 +93,5 @@ io.on('connection', (socket) => {
 });
 
 server.listen(port, ()=> {
-    console.log(`Server is running in http://localhost:${port}`);
+    console.log(`Server is running in ${port}`);
 });
